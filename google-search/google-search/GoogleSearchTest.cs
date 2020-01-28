@@ -58,29 +58,33 @@ namespace GoogleSearchTests
         {
             OpenHomePage();
             InitInputValue();
-            FillSearchForm();
+            SearchData data = new SearchData("test");
+            FillSearchForm(data);
             SubmitSearchForm();
+            Assert.AreEqual(data, driver.FindElement(By.Name("q")).GetAttribute("value"));
+            //String actualAttribute = driver.FindElement(By.Name("q")).GetAttribute("value");
             AddResultInTestRail();
-            Assert.AreEqual("test", driver.FindElement(By.Name("q")).GetAttribute("value"));
-            String actualAttribute = driver.FindElement(By.Name("q")).GetAttribute("value");
 
 
 
-            if (actualAttribute.Contains("test"))
-            {
-                GoogleSearchTests.addResultForTestCase("", comment, TEST_CASE_PASSED_STATUS, "");
-            }
+            //if (actualAttribute.Contains("test"))
+            //{
+            //    GoogleSearchTests.addResultForTestCase("", comment, TEST_CASE_PASSED_STATUS, "");
+            //}
 
-            else
-            {
-                GoogleSearchTests.addResultForTestCase("", comment, TEST_CASE_FAILED_STATUS, "");
-            }
+            //else
+            //{
+            //    GoogleSearchTests.addResultForTestCase("", comment, TEST_CASE_FAILED_STATUS, "");
+            //}
 
         }
 
         private void AddResultInTestRail()
         {
-            throw new NotImplementedException();
+            AuthTestRail auth = new AuthTestRail("");
+            auth.User = "";
+            auth.Password = "";
+
         }
 
         private void SubmitSearchForm()
@@ -88,9 +92,9 @@ namespace GoogleSearchTests
             driver.FindElement(By.Name("q")).SendKeys(Keys.Enter);
         }
 
-        private void FillSearchForm()
+        private void FillSearchForm(SearchData data)
         {
-            driver.FindElement(By.Name("q")).SendKeys("test");
+            driver.FindElement(By.Name("q")).SendKeys(data.Value);
         }
 
         private void InitInputValue()
@@ -108,8 +112,13 @@ namespace GoogleSearchTests
 
 
             //TEST_CASE_ID = "2538";
-            APIClient client = new APIClient();
-            client.Password = "";
+            //APIClient client = new APIClient();
+            //client.Url = "";
+            //client.User = "";
+            //client.Password = "";
+
+           
+
             
 
             if (status != 1)
@@ -145,52 +154,10 @@ namespace GoogleSearchTests
 
 
         }
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
+        
 
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
+        
 
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+        
     }
 }
