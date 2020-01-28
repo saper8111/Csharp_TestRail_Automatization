@@ -63,7 +63,7 @@ namespace GoogleSearchTests
             SubmitSearchForm();
             Assert.AreEqual(data, driver.FindElement(By.Name("q")).GetAttribute("value"));
             //String actualAttribute = driver.FindElement(By.Name("q")).GetAttribute("value");
-            AddResultInTestRail();
+            AddResultInTestRail(new TestRailData("323", "232323"));
 
 
 
@@ -79,11 +79,16 @@ namespace GoogleSearchTests
 
         }
 
-        private void AddResultInTestRail()
+        private void AddResultInTestRail(TestRailData data)
         {
             AuthTestRail auth = new AuthTestRail("");
             auth.User = "";
             auth.Password = "";
+           
+
+
+
+
 
         }
 
