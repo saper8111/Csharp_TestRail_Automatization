@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace google_search
+namespace GoogleSearchTests
 {
     [Serializable]
     public class APIException : Exception

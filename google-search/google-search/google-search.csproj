@@ -64,7 +64,8 @@
   <ItemGroup>
     <Compile Include="APIClient.cs" />
     <Compile Include="APIException.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="TestRailData.cs" />
+    <Compile Include="GoogleSearchTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
